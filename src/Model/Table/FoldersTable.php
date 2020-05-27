@@ -119,4 +119,11 @@ class FoldersTable extends AppTable
 
         return $parentFolders;
     }
+
+    public function listParentsForUser($userId): Query
+    {
+        $parentFolders = $this->ParentFolders->find('treeList', ['limit' => 200, 'spacer' => '└─ '])->leftJoinWith('Users')->where(['user_id' => $userId]);
+
+        return $parentFolders;
+    }
 }

@@ -34,12 +34,12 @@ use Cake\Validation\Validator;
  */
 class AppTable extends Table
 {
-    public function findForUser($id)
+    public function findForUser($userId)
     {
         if ($this->getTable() === 'folders') {
-            $query = $this->find('all', ['contain' => 'ParentFolders'])->leftJoinWith('Users')->where(['user_id' => $id]);
+            $query = $this->find('all', ['contain' => 'ParentFolders'])->leftJoinWith('Users')->where(['user_id' => $userId]);
         } else {
-            $query = $this->find('all')->leftJoinWith('Users')->where(['user_id' => $id]);
+            $query = $this->find('all')->leftJoinWith('Users')->where(['user_id' => $userId]);
         }
 
         return $query;

@@ -59,6 +59,8 @@ class FoldersController extends AppController
             $data['users']['_ids'][0] = $this->currentUser->id;
 
             $folder = $this->Folders->patchEntity($folder, $data);
+            debug($folder);
+            die;
 
             if ($this->Folders->save($folder)) {
                 $this->Flash->success(__('Carpeta creada correctamente.'));
@@ -68,7 +70,7 @@ class FoldersController extends AppController
             $this->Flash->error(__('No ha sido posible crear la carpeta. Por favor, inténtelo de nuevo.'));
         }
 
-        $parentFolders = $this->Folders->listParents();
+        $parentFolders = $this->Folders->listParentsForUser($this->currentUser->id);
         $notes = $this->Folders->Notes->find('list', ['limit' => 200]);
         $users = $this->Folders->Users->find('list', ['limit' => 200]);
 

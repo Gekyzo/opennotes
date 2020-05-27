@@ -46,6 +46,7 @@ class PagesController extends AppController
     {
         $this->Authentication->allowUnauthenticated(['display']);
     }
+
     /**
      * Displays a view
      *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use \Cake\Event\EventInterface;
+use Cake\Routing\Router;
 
 /**
  * Users Controller
@@ -40,12 +41,13 @@ class UsersController extends AppController
     public function login()
     {
         $result = $this->Authentication->getResult();
-        // If the user is logged in send them away.
+
         if ($result->isValid()) {
-            // $target = $this->Authentication->getLoginRedirect() ?? '/home';
-            $target = ['action' => 'Home'];
+            $target = $this->Authentication->getLoginRedirect() ?? '/home';
+
             return $this->redirect($target);
         }
+
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error('Invalid username or password');
         }
@@ -111,7 +113,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Usuario registrado con éxito.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
 
             // Si existe algún error, muestro un mensaje genérico.

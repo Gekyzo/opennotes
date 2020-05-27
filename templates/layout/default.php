@@ -15,7 +15,37 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$this->Html->css(
+    [
+        'animate',
+        'owl.carousel.min',
+        'owl.theme.default.min',
+        'magnific-popup',
+        'flaticon',
+        'style'
+    ],
+    ['block' => true]
+);
+
+$this->Html->script(
+    [
+        'jquery.min',
+        'jquery-migrate-3.0.1.min',
+        'popper.min',
+        'bootstrap.min',
+        'jquery.easing.1.3',
+        'jquery.waypoints.min',
+        'jquery.stellar.min',
+        'owl.carousel.min',
+        'jquery.magnific-popup.min',
+        'jquery.animateNumber.min',
+        'scrollax.min',
+        'google-map',
+        'main'
+    ],
+    ['block' => true]
+);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,42 +54,27 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
-
-    <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 </head>
 
-<body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <?= $this->Html->link(
-                __('OpenNotes'),
-                ['controller' => 'Users', 'action' => 'home']
-            ) ?>
-        </div>
-        <div class="top-nav-links">
-            <?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
-        </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-    <footer>
-    </footer>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <?= $this->element('nav') ?>
+
+    <section class="ftco-section ftco-no-pb">
+        <?= $this->Flash->render() ?>
+    </section>
+
+    <?= $this->fetch('content') ?>
+
+    <?= $this->element('footer') ?>
+    <?= $this->fetch('script') ?>
+
 </body>
 
 </html>
